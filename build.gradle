@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'practica1.johanna.rodriguez'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+mainClassName="practica1.johanna.rodriguez.Main"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'org.jsoup:jsoup:1.12.1'
+}
