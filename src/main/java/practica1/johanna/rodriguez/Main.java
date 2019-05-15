@@ -32,11 +32,15 @@ public class Main {
             System.out.println("La cantidad de imagenes dentro de parrafos del HTML es : " + imagenes.size());
 
             //Apartado D
-            Elements formGet = doc.select("[method=get]");
+            Elements formGet = doc.select("form[method=get]");
             System.out.println("La cantidad de formularios metodo GET del HTML es : " + formGet.size());
 
-            Elements formPost = doc.select("[method=post]");
+            Elements formPost = doc.select("form[method=post]");
             System.out.println("La cantidad de formularios metodo POST del HTML es : " + formPost.size());
+
+            //Apartado E
+
+            //Elements
 
 
         } catch (IOException e) {
