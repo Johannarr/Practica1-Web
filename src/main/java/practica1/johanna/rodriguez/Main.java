@@ -8,6 +8,8 @@ import org.jsoup.select.Elements;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Main {
@@ -19,9 +21,14 @@ public class Main {
         try {
             Document doc = Jsoup.connect(url).get(); //Guarda el html de la pagina
 
+            Connection.Response conexion = Jsoup.connect(url).execute();
+            String cuerpo = conexion.body();
+
            //Apartado A
-            String[] lineas = doc.html().split("\n");
-            System.out.println("La cantidad de lineas del recurso es : " + lineas.length);
+            //String[] lineas = doc.html().split("\n");
+            //System.out.println("La cantidad de lineas del recurso es : " + lineas.length);
+            int lineas = cuerpo.split("\n").length;
+            System.out.println("La cantidad de lineas del recurso es : " + lineas);
 
             //Apartado B
             Elements parrafos= doc.getElementsByTag("p");
@@ -39,8 +46,18 @@ public class Main {
             System.out.println("La cantidad de formularios metodo POST del HTML es : " + formPost.size());
 
             //Apartado E
+            for (Element input : doc.getElementsByTag("input")) {
+                System.out.println(input);
+            }
 
-            //Elements
+            //Apartado F
+            for (Element form:doc.select("form[method=post]")) {
+                String  URL= form.absUrl("action");
+                Document doc1 = Jsoup.connect(URL)
+                        .data("asignatura","practica1")
+                        .header("matricula","20141811").post();
+                System.out.println(doc1.body());
+            }
 
 
         } catch (IOException e) {
